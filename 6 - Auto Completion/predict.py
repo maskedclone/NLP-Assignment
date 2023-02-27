@@ -56,5 +56,5 @@ num_layers = 3                # 3 in the paper
 dropout_rate = 0.65              
 lr = 1e-3                     
 model = LSTM(vocab_size, emb_dim, hid_dim, num_layers, dropout_rate).to(device)
-save_path = f'models/model.pt'
+save_path = f'models/bestmodel.pt'
 model.load_state_dict(torch.load(save_path))

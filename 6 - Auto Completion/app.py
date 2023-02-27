@@ -15,7 +15,7 @@ class MyForm(FlaskForm):
     name = StringField('Type', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
-@app.route('/autocomplete', methods = ['GET','POST'])
+@app.route('/assignment6', methods = ['GET','POST'])
 def autocomplete():
     form = MyForm()
     code = False
@@ -25,7 +25,7 @@ def autocomplete():
         name = form.name.data 
         code = predict(prompt = name, temperature=0.5)
         form.name.data = ""
-    return render_template("autocomplete.html",form=form,name =name, code=code)
+    return render_template("assignment6.html",form=form,name =name, code=code)
 if __name__ == "__main__":
     app.run(debug=True)
 
