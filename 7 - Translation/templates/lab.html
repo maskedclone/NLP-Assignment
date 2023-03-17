@@ -1,0 +1,140 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Link to Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f1f1f1;
+			margin: 0;
+		}
+		header {
+			background-color: #4285f4;
+			color: white;
+			text-align: center;
+			padding: 10px;
+			height: 56px; /* Set header height */
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			z-index: 999; /* Set header z-index */
+		}
+		footer {
+			background-color: #f2f2f2;
+			color: #555;
+			text-align: center;
+			padding: 10px;
+			height: 56px; /* Set footer height */
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			z-index: 999; /* Set footer z-index */
+		}
+		/* Create two equal columns that floats next to each other */
+		.column {
+			float: left;
+			width: 50%;
+			padding: 10px;
+			min-height: calc(100vh - 112px); /* Set column min-height */
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+
+		/* Clear floats after the columns */
+		.row:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+		/* Style the form inputs */
+		input[type=text], textarea {
+			width: 100%;
+			padding: 12px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			resize: vertical;
+			background-color: #f8f8f8;
+		}
+
+		label {
+			font-weight: bold;
+			display: block;
+			margin-bottom: 6px;
+		}
+
+		/* Style the buttons */
+		button[type=submit] {
+			background-color: #4285f4;
+			color: white;
+			padding: 12px 20px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			transition: background-color 0.3s;
+		}
+
+		button[type=submit]:hover {
+			background-color: #3367d6;
+		}
+
+		/* Responsive layout - makes the two columns stack on top of each other */
+		@media screen and (max-width: 600px) {
+			.column {
+				width: 100%;
+				height: auto; 
+			}
+			header, footer {
+				height: 48px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<header class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<h1 class="navbar-brand mb-0 h1">French-to-English</h1>
+	</header>
+	<div class="row">
+		<div class="column" style="background-color:#ffffff;">
+			<form action="/mt" method="POST">
+				<label for="">Please enter text here:</label>
+				<textarea name="source" rows="10" placeholder="Enter text here">{{data.source}}</textarea>
+				<br>
+				<label for="">Which language you want:</label>
+				<select name="target" class="form-control">
+					<option value="en">English</option>
+					<option value="fr">French</option>
+				</select>
+				<br>
+				<button type="submit" value="Translate" class="btn btn-primary">Proceed</button>
+			</form>
+		</div>
+		<div class="column" style="background-color:#f1f1f1;">
+			<label for="">Here is the result:</label>
+			<textarea name="source" rows="20" readonly>{{data.predict}}</textarea>
+		</div>
+	</div>
+	<footer>
+		<p>&copy; NLP French to English Translation </p>
+	</footer>
+</body>
+</html>
+
+{% endblock%}
