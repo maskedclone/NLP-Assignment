@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+
+<style>
+.header {
+      padding: 15px;
+      text-align: center;
+      background: #1a89bc;
+      color: white;
+      font-size: 30px;
+    }
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #1a89bc;
+   color: white;
+   text-align: center;
+}
+</style>
+<body>
+    <div class="header">
+        <h1>NLP-08-TransformerGeneration</h1>
+        <p>NguyenHongDuc-122934</p>
+      </div>
+    <div class="w3-container" style="margin-top: 5px;margin: 10px 10px 0px 10px;">
+        <form action="" method="POST">
+            {{form.csrf_token}}
+            {{form.name.label}}
+            <div style="display: flex; margin-top: 8px;">
+            {{form.name(class="form-input")}}
+            <div style="margin-left: 8px;">
+            {{form.submit(class="form-button")}}
+            </div>
+            </div>
+        </form>
+        <br>
+        {% if name %}
+            <span style="font-weight: bold;">Type:</span> {{name}}
+            <br>
+            <span style="font-weight: bold;">Predict:</span> {{code}}
+        {% else %}
+            Not Found
+        {% endif %}
+    
+    </div>
+    <div class="footer">
+        <p>AIT-NaturalLanguageUnderstanding</p>
+        <h5>Assignment08</h5>
+    </div>
+</html>
+{% endblock%}
