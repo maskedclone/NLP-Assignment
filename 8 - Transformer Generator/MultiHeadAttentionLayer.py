@@ -5,7 +5,7 @@ import pickle
 
 with open('vocab_batched.pkl', 'rb') as handle:
     vocab = pickle.load(handle)
-print(vocab)
+# print(vocab)
 
 ## numericalizing
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')

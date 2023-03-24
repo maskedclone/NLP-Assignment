@@ -1,16 +1,17 @@
-import torch
+import torch, torchtext
 import pickle
 from MultiHeadAttentionLayer import MultiHeadAttentionLayer, Decoder
 from torchtext.data.utils import get_tokenizer
 #Load GPU
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 # torch.load('best-val-tr_lm-batched.pt', map_location=torch.device('cpu'))
-tokenizer = get_tokenizer('spacy', language='en_core_web_sm')
+# tokenizer = get_tokenizer('spacy', language='en_core_web_sm')
+tokenizer = torchtext.data.utils.get_tokenizer('basic_english')
 
 # Load data (deserialize)
 with open('vocab_batched.pkl', 'rb') as handle:
     vocab = pickle.load(handle)
-print(len(vocab))
+# print(len(vocab))
 
 # Define special symbols and indices
 UNK_IDX, PAD_IDX, SOS_IDX, EOS_IDX = 0, 1, 2, 3
